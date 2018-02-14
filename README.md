@@ -26,7 +26,7 @@ MYSQL_VER='5.1.25'
 
 
 LIBS="$LIBS:$ADP_HOME/lib-dsl-checker/*"
-LIBS="$LIBS:$ADP_HOME/lib-adp-ews-$ADP_VER/*"
+LIBS="$LIBS:$ADP_HOME/lib-adp-core-$ADP_VER/*"
 LIBS="$LIBS:$ADP_HOME/lib-json-$ADP_OPT_VER/*"
 LIBS="$LIBS:$ADP_HOME/lib-mysql-conn-$MYSQL_VERv"
 LIBS="$LIBS:$ADP_HOME/lib-sap-$ADP_OPT_VER/*"
