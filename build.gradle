@@ -1,0 +1,52 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'jacoco'
+
+run.enabled = false
+distTar.enabled=false
+distZip.enabled=false
+
+applicationName = 'interlok-dsl-checker'
+version = ''
+
+jar {
+	baseName = 'interlok-dsl-checker'
+    version =  version
+    manifest {
+        attributes 'Implementation-Title': 'Interlok DSL Checker',
+                   'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+    maven { url "https://development.adaptris.net/nexus/content/groups/public" }
+}
+
+dependencies {
+    compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
+    compileOnly group: 'com.adaptris', name: 'adp-core', version: '3.7.0-RELEASE'
+}
+
+startScripts {
+    mainClassName = 'com.adaptris.utils.DSLChecker'
+}
+
+installDist {
+    destinationDir = new File(project.buildDir, 'staged')
+}
+
+assemble.dependsOn installDist
+
+jacoco {
+  toolVersion="0.7.9"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+    }
+}
+
+check.dependsOn jacocoTestReport
