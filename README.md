@@ -1,6 +1,18 @@
 # interlok-dsl-checker
 
-## Script
+## Help
+
+```
+$ ./build/staged/bin/interlok-dsl-checker
+Parsing failed.  Reason: Missing required option: a
+usage: interlok-dsl-checker
+ -a,--adapter <arg>         (required) The adapter xml
+ -h,--help                  Displays this..
+ -p,--preprocessors <arg>   The preprocessors to execute
+ -v,--variables <arg>       The variables (can be added multiple times)
+```
+
+## Sample Script
 
 ```
 #!/bin/bash
@@ -27,7 +39,8 @@ cd $ADP_HOME
 $JAVA_HOME/bin/java -cp $LIBS com.adaptris.utils.DSLChecker $*
 ```
 
-## Execute
+## Lazy  Execute
+
 ```
-find  /opt/afv3/config/us0000001216-config-includes/dsl/ -type f -exec dsl-checker  -a {} -p "xinclude:variableSubstitution" -v /opt/afv3/config/us0000001216-env-vars.properties \;
+find  /opt/afv3/config/config-includes/dsl/ -type f -exec dsl-checker  -a {} -p "xinclude:variableSubstitution" -v /opt/afv3/config/env-vars.properties \;
 ```
